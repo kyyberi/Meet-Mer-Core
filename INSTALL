@@ -1,0 +1,5 @@
+Edit config/database.yml
+
+run 'rake db:create' to create database
+
+run 'rake db:migrate' to create needed database tables

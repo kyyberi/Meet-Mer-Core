@@ -1,0 +1,147 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    = stylesheet_link_tag    "jtweetsanywhere", "application", "accordion", "shadowbox", "shadowbox2", "menu", "meeting", :media => "all"
+    = javascript_include_tag "application", "shadowbox", "http://platform.twitter.com/anywhere.js?id=TAv9ApCbmXTPRtjFspeGQ=1", "http://w.sharethis.com/button/buttons.js", "jquery.tablesorter.min", "https://www.google.com/jsapi"
+    = csrf_meta_tags 
+    = yield(:head)
+  :javascript
+    var switchTo5x=true;
+    stLight.options({publisher: "4b278036-5ac5-4758-bfe8-0d450eb38bb4"});    
+
+  :javascript
+    $(document).ready(function() 
+      { 
+        $("#sortme").tablesorter( {sortList: [[2,1]]} ); 
+      } 
+    ); 
+  :javascript
+    $(document).ready(function() {
+      $('#tweetinit').hide();
+      $('#tweets').jTweetsAnywhere({
+        searchParams: ['q=MeetMer'],
+        count: 5,
+        showTweetFeed: {    
+          autoConformToTwitterStyleguide: true,
+          showTimestamp: {
+            refreshInterval: 120
+          },
+          autorefresh: {
+            mode: 'trigger-insert',
+            interval: 30
+          },
+          paging: { mode: 'more' }
+        },
+        onDataRequestHandler: function(stats, options) {
+          return true;        
+        }
+      });
+    });
+
+  :javascript
+    $(document).ready(function(){
+	
+    $('.acc_container').hide(); //Hide/close all containers
+    $('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
+
+    $('.acc_trigger').click(function(){
+      if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
+        $('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container
+          $(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
+        }
+        return false; //Prevent the browser jump to the link anchor
+      });
+
+    });
+  :javascript
+    Shadowbox.init({
+    });
+  :javascript
+    $(document).ready(function()
+      {
+        $('#jsPageSearch').delay(1500).slideToggle("slow");      
+      });
+      
+  :javascript
+    $(document).ready(function()
+      {
+        
+        $('#search').keyup(function()
+          {
+            searchTable($(this).val());
+          });
+      });
+
+    function searchTable(inputVal)
+    {
+      
+      var table = $('#packagesData');
+      table.find('tr.item').each(function(index, row)
+      {
+        var allCells = $(row).find('td');
+        {
+          var found = false;
+          allCells.each(function(index, td)
+          {
+            var regExp = new RegExp(inputVal, 'i');
+            if(regExp.test($(td).text()))
+              {
+                found = true;
+                return false;
+              }
+          });
+          if(found == true)$(row).show();else $(row).hide();
+        }
+      });
+    	
+    }
+    
+
+
+  %body
+    #wrapper
+      #headerwrap
+       
+        #slide-out
+          %div{:id => "subscribe", :class => "page-wrap"} 
+            - if signed_in?
+              .subscribe_sign_out 
+                = link_to "Sign out", destroy_user_session_path, :method => :delete
+            - else
+              .subscribesignin
+                %h3 
+                  Login
+                = form_tag user_session_path do
+                  = text_field_tag 'user[email]'
+                  %br
+                  = password_field_tag 'user[password]'
+                  %br
+                  = check_box_tag 'user[remember_me]'
+                  = label_tag 'user[remember_me]', 'Remember me'
+                  %br
+                  %button Sign in
+            
+            %a{:href=>"#", :class => "button"} 
+              
+      
+        #header
+
+          #navigationwrap
+            #logo
+            #dash
+            
+            #navigation 
+              = render_navigation
+      #contentliquid
+        #contentwrap
+              
+          #content
+            = yield
+      #footerwrap
+        #footer
+          = render "layouts/shared/footer"

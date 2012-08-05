@@ -1,0 +1,115 @@
+
+.meeting .meetingdetail_date {
+        border:solid 1px #ddd;
+        padding:10px;
+        background-color:#eee;
+	width:45%;
+	float:left;	
+	margin-right:10px;
+	margin-top:0px;
+        -moz-border-radius: 10px; border-radius:10px; 
+}
+
+.meeting .meetingdetail_discussion {
+        border:solid 0px #ddd;
+        padding:10px;
+/*	display:block;*/
+	width:90%;
+	float:left;
+}
+
+.meeting .meetingdetail_minutes {
+        border:solid 0px #ddd;
+        padding:10px;
+        /* display:block; */
+	width:90%;
+	float:left;
+}
+
+.meeting .meetingdetail_channels {
+        border:solid 0px #ddd;
+        padding:10px;
+        background-color:#fff;
+        width:45%;
+        float:right;
+	margin-top:0px;	
+}
+
+
+.meeting .item {
+	font-weight:bold;
+	display:block;
+	margin-bottom:5px;
+	margin-top:10px;
+}
+
+.meeting .value {
+	margin-left:10px;
+}
+
+.meeting .value a {
+	border:solid 1px #ddd;
+	padding:10px;
+	background-color:#eee;
+}
+
+#break {
+	width:100%;
+	height:50px;
+	display:block;
+}
+
+.meeting .grouptime {
+	border:solid 0px #ddd;
+	padding:10px;
+/*	min-height:115px; */
+	width:96%;
+	margin-top:10px;
+}
+
+.meeting li {
+	width:280px;
+	margin-left:10px;
+	color: #3c61a1; background-color: #fff; 
+	  padding: 1em 1em;
+	  border-width: 1px; border-style: solid; border-color: #6391b6; 
+	  margin-top:0.5em;
+	  display: inline-block; 
+	border-radius: 0.5em;
+}
+
+.meeting h2.more{
+	font-size:1.2em;
+	font-weight:bold;
+	margin-top:10px;
+	background-color:#ddd;
+	padding:10px;
+}
+
+.meeting h2.fancy {
+        font-size: 20px;
+        background-color:#1e748c;
+        background-image:url('mer-logo-bg-dark-reverse.png');
+        padding:10px;
+        margin-top:-10px;
+        margin-right:0px;
+        -moz-border-radius-topleft: 10px; -moz-border-radius-topright: 10px; border-top-right-radius:10px; 
+        -webkit-border-top-left-radius: 10px; -webkit-border-top-right-radius: 10px; border-top-left-radius:10px;
+        color:#fff;
+        -moz-box-shadow: 2px 2px 5px #888;
+        -webkit-box-shadow: 2px 2px 5px #888;
+        box-shadow: 2px 2px 5px #888;
+        height:25px;
+        width:98%;
+
+}
+
+.meeting hr {
+	background-color:#fff;
+	border:#fff 1px dotted;
+	border-style: none none dotted;
+	color:#eee;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
